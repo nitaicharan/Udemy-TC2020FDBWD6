@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-
 void main() => runApp(
-  MaterialApp(
-    home: Scaffold(
-      body: MyApp(),
-    ),
-  )
-);
+      MaterialApp(
+        home: Scaffold(
+          backgroundColor: Colors.black,
+          body: SafeArea(
+            child: Myapp(),
+          ),
+        ),
+      ),
+    );
 
-class MyApp extends StatefulWidget{
-  @override
-  _MyApp createState()=> _MyApp();
-}
+class Myapp extends StatelessWidget {
+  Expanded play({Color color, int number}) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          final player = AudioCache();
+          player.play('note$number.wav');
+        },
+      ),
+    );
+  }
 
-class _MyApp extends State<MyApp>{
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FlatButton(
-        onPressed: (){
-          final player = AudioCache();
-          player.play('note1.wav');
-        },
-        child: Text('Click Me'),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        play( color: Colors.red, number: 1),
+        play( color: Colors.orange, number: 2),
+        play( color: Colors.yellow, number: 3),
+        play( color: Colors.green, number: 4),
+        play( color: Colors.teal, number: 5),
+        play( color: Colors.blue, number: 6),
+        play( color: Colors.purple, number: 7),
+      ],
     );
   }
 }
