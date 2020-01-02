@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:audioplayers/audio_cache.dart';
+
 
 void main() => runApp(
   MaterialApp(
@@ -18,7 +19,13 @@ class _MyApp extends State<MyApp>{
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(nouns.last),
+      child: FlatButton(
+        onPressed: (){
+          final player = AudioCache();
+          player.play('note1.wav');
+        },
+        child: Text('Click Me'),
+      ),
     );
   }
 }
